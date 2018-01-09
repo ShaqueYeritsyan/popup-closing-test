@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<link rel="stylesheet" href="test.css">
+			<script type="text/javascript" src="test.js" ></script>
+		</head>
+		<body>
+			<div id="mypopup">
+				<span class="close" id="close">&times;</span>
+			</div>
+			<div id="randompopup">
+				<input class="button" type="submit" value="Close">
+			</div>
+			<script>
+
+				randomPopup = document.getElementById('randompopup');
+				closeButton = document.getElementsByClassName("button")[0];
+				closeButton.onclick = function() {
+					randomPopup.style.display = "none";
+				}
+
+				popup = document.getElementById('mypopup');
+				dismiss = document.getElementsByClassName("close")[0];
+				dismiss.onclick = function() {
+					if(randomPopup && randomPopup.style.display != "none"){
+						popup.style.display = "";
+					}else{
+						popup.style.display = "none";
+					}
+					
+				}
+
+				function randomIntFromInterval(min,max) {
+   					return Math.floor(Math.random()*(max-min+1)+min);
+				}
+
+				function openRandomPopup(){
+   				var timeout = randomIntFromInterval(1000,5000)
+    			window.setTimeout(function(){
+        			randomPopup = document.getElementById('randompopup');
+        			randompopup.style.display = "block"
+        			openRandomPopup()
+   				}, timeout);
+				}
+				openRandomPopup();
+
+			</script>
+		</body>
+</html>
